@@ -1,0 +1,13 @@
+[package]
+name = "gost7.32-2017"
+version = "0.1.0"
+entrypoint = "g7.32-2017.typ"
+authors = [
+    "vzalygin <https://github.com/vzalygin",
+    "pluttan <https://github.com/pluttan>"
+]
+license = "MIT"
+description = "Styles to format docs with GOST 7.32-2017"
+repository = "https://github.com/pluttan/typst-g7.32-2017"
+keywords = ["gost7.32-2017", "gost"]
+categories = ["text", "scripting"]
