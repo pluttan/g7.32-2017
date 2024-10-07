@@ -1,6 +1,7 @@
 #import "../g7.32-2017.config.typ":config
 #let style_heading(content) = {
     set heading(numbering: config.heading.numbering)
+    
     show heading.where(level:1): it => {
         if (config.heading.l1.pagebreak){pagebreak()}
         set text(config.heading.l1.size, hyphenate: false)
@@ -33,5 +34,6 @@
         }
         par(text(size: config.heading.l3.indent, h(0.0em)))
     }
+
     content
 }
