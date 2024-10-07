@@ -1,8 +1,8 @@
-#let theme = ""
-// #let theme = "themes/Catppuccin Latte.tmTheme"
-// #set raw(theme:theme)
-#let lst = counter("listing")
-
+#import "../g7.32-2017.config.typ":config
+#let theme = "../themes/"+config.raw.theme
+#if (config.raw.theme != ""){
+    set raw(theme:theme)
+}
 // Функция разбивающая файл на подстроки по пробелам в начале строки
 // [@example 
 // ```cpp
@@ -81,7 +81,7 @@
 #let вывединк(лист, нач, кон) = {writeft(лист, нач, кон)}
 
 // Функция, выводящая код по ГОСТу
-#let code(data, lang, lable, num: false, num_splitter: "|", size: 14pt) = {
+#let code(data, lang, lable, num: config.raw.num, num_splitter: config.raw.splitter, size: config.raw.size) = {
     [
         #set text(size)
         #if (num){
@@ -94,20 +94,26 @@
                 it.body
             }
             align(center)[
-                #if(theme!=""){raw(data, lang:lang, theme:theme)}
-                #if(theme==""){raw(data, lang:lang)}
-                #lst.step()
+                #if(config.raw.theme!=""){
+                    raw(data, lang:lang, theme:theme)
+                } else {
+                    raw(data, lang:lang)
+                }
+                #config.raw.counter.step()
             ]
         } else {
             align(center)[
-                #if(theme!=""){raw(data, lang:lang, theme:theme)}
-                #if(theme==""){raw(data, lang:lang)}
-                #lst.step()
+                #if(config.raw.theme!=""){
+                    raw(data, lang:lang, theme:theme)
+                } else {
+                    raw(data, lang:lang)
+                }
+                #config.raw.counter.step()
             ]
         }
     ]
     align(center)[ 
-        Листинг #lst.display() #sym.bar.h _ #lable _
+        Листинг #config.raw.counter.display() #sym.bar.h _ #lable _
     ]
 }
 #let код(данные, язык, описание, нумерация: false, разделитель: "|", размер: 14pt) = {code(данные, язык, описание, num: нумерация, num_splitter: разделитель, size: размер)}

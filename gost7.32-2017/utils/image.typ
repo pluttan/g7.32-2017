@@ -1,13 +1,13 @@
-#let imag = counter("image")
+#import "../g7.32-2017.config.typ":config
 
 // Выводит изображение
 #let img(data, lable, f:(i)=>{i.display()}) = {
     align(center)[
         #data
-        #imag.step()
+        #config.image.counter.step()
     ]
     align(center)[
-        Рисунок #f(imag) #sym.bar.h _ #lable _
+        Рисунок #f(config.image.counter) #sym.bar.h _ #lable _
     ]
 }
 
@@ -16,8 +16,8 @@
 // Инкрементирует номер рисунка
 #let imgc() = {
     align(center)[
-        #imag.step()
-        #imag.display()
+        #config.image.counter.step()
+        #config.image.counter.display()
     ]
 }
 

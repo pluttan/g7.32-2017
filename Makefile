@@ -3,29 +3,50 @@ SHELL := /bin/bash
 unameOut := $(shell uname -s)
 
 ifeq ($(unameOut),Linux)
-    data := $(HOME)/.local/share
+    dataLib := $(HOME)/.local/share
+    dataConf := $(HOME)/.config
 else ifeq ($(unameOut),Darwin)
-    data := $(HOME)/Library/Application\ Support
+    dataLib := $(HOME)/Library/Application\ Support
+    dataConf := $(HOME)/.config
 else ifeq ($(unameOut),CYGWIN*)
-    data := %APPDATA%
+    dataLib := %APPDATA%
+    dataConf := %APPDATA%
 else ifeq ($(unameOut),MINGW*)
-    data := %APPDATA%
+    dataLib := %APPDATA%
+    dataConf := %APPDATA%
 else ifeq ($(unameOut),MSYS_NT*)
-    data := %APPDATA%
+    dataLib := %APPDATA%
+    dataConf := %APPDATA%
 else
     $(error unknown os)
 endif
 
-data := $(data)/typst/packages/docs
-bmstu_package := $(data)/bmstu/0.1.1
+dataLib := $(dataLib)/typst/packages/docs
+gost_package := $(dataLib)/gost7.32-2017/0.1.1
 
-.PHONY: all install
+.PHONY: all install theme themeList
 all: install
 
-install: create_dir copy_files
+install: create_dir_lib copy_files create_dir_conf config
 
-create_dir:
-	@mkdir -p $(bmstu_package)
+create_dir_lib:
+	@mkdir -p $(gost_package)
 
 copy_files:
-	@cp -r $(dir $(lastword $(MAKEFILE_LIST)))bmstu/* $(bmstu_package)
+	@cp -r $(dir $(lastword $(MAKEFILE_LIST)))gost7.32-2017/* $(gost_package)
+
+create_dir_conf:
+    @mkdir -p $(dataConf)/typst
+
+config:
+    @ln -s $(gost_package)g7.32-2017.config.typ dataConf/typst/
+
+theme:
+	@if [ -z "$$1" ]; then \
+		echo "Error: You must provide a theme as .tmTheme file"; \
+		exit 1; \
+	fi
+    @cp "$$1" $(gost_package)/themes
+
+themeList:
+    @ls $(gost_package)/themes
