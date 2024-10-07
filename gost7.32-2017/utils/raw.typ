@@ -1,8 +1,10 @@
 #import "../g7.32-2017.config.typ":config
+
 #let theme = "../themes/"+config.raw.theme
 #if (config.raw.theme != ""){
     set raw(theme:theme)
 }
+
 // Функция разбивающая файл на подстроки по пробелам в начале строки
 // [@example 
 // ```cpp
@@ -55,33 +57,40 @@
 }
 
 // deprecated
-#let parsecpp(lst) = {parse(lst)}
-#let parseasm(lst) = {parse(lst)}
+#let parsecpp(lst) = parse(lst)
+#let parseasm(lst) = parse(lst)
 // end-deprecated
 
-#let разбор(лист) = {parse(лист)}
+#let разбор(лист) = parse(лист)
 
 // Функция, выводящая переданное значение от f-той строки до t-той
-#let writeft(lst, f, t) = {
+#let subtext_from_to(text, from, to) = {
     let fi = 0
     let i = 0
     let fo = 0
     let out = ""
     let nlst = ()
-    lst = lst.split("\n")
-    while (i < lst.len()) {
+    text = text.split("\n")
+    while (i < text.len()) {
         i += 1
-        if (i >= f and i <= t) {
-            nlst.push(lst.at(i))
+        if (i >= from and i <= to) {
+            nlst.push(text.at(i))
         }
     }
     return nlst.join("\n")
 }
 
-#let вывединк(лист, нач, кон) = {writeft(лист, нач, кон)}
+#let подтекст_начало_конец(текст, начало, конец) = subtext_from_to(текст, начало, конец)
 
 // Функция, выводящая код по ГОСТу
-#let code(data, lang, lable, num: config.raw.num, num_splitter: config.raw.splitter, size: config.raw.size) = {
+#let code(
+    data, 
+    lang, 
+    lable, 
+    num: config.raw.num, 
+    num_splitter: config.raw.splitter, 
+    size: config.raw.size
+) = {
     [
         #set text(size)
         #if (num){
@@ -113,8 +122,15 @@
         }
     ]
     align(center)[ 
-        Листинг #config.raw.counter.display() #sym.bar.h _ #lable _
+        Листинг #config.raw.counter.display() #sym.bar.h #lable
     ]
 }
-#let код(данные, язык, описание, нумерация: false, разделитель: "|", размер: 14pt) = {code(данные, язык, описание, num: нумерация, num_splitter: разделитель, size: размер)}
 
+#let листинг(
+    текст, 
+    язык, 
+    описание, 
+    нумерация: config.raw.num, 
+    разделитель: config.raw.splitter, 
+    размер: config.raw.size
+) = code(текст, язык, описание, num: нумерация, num_splitter: разделитель, size: размер)

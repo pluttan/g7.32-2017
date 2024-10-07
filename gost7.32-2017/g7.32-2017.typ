@@ -16,4 +16,4 @@
     content
 }
 
-#let гост732-2017(content) = {g732-2017(content)}
+#let гост732-2017(content) = g732-2017(content)
