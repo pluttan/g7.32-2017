@@ -8,7 +8,7 @@
         counter: counter("listing")
     ),
     toc:(
-        title_name: "Содержание",
+        label: "Содержание",
         align: "left"
     ),
     img:(
@@ -32,6 +32,7 @@
         numbering: "1.1",
         l1: (
             pagebreak: true,
+            weight:"bold",
             size: 14pt,
             upper: true,
             align: center,
@@ -39,6 +40,7 @@
         ),
         l2: (
             pagebreak: false,
+            weight:"bold",
             size: 14pt,
             upper: false,
             align: left,
@@ -46,6 +48,7 @@
         ),
         l3: (
             pagebreak: false,
+            weight:"bold",
             size: 14pt,
             upper: false,
             align: left,

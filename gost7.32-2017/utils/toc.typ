@@ -4,8 +4,8 @@
 #let table_of_contents() = {
     {
         set align(config.toc.title.align)
-        set text(config.toc.title.size, weight: config.toc.title.weight)
-        [config.toc.title_label]
+        set text(config.heading.l1.size, weight: config.heading.l1.weight)
+        [config.toc.label]
     }
     set align(config.toc.align)
     outline(
