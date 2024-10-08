@@ -3,7 +3,7 @@
 
 #let table_of_contents() = {
     {
-        set align(config.toc.title.align)
+        set align(config.heading.l1.align)
         set text(config.heading.l1.size, weight: config.heading.l1.weight)
         [config.toc.label]
     }
