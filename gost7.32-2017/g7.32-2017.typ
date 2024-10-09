@@ -8,7 +8,7 @@
 #import "utils/table.typ": *
 #import "utils/toc.typ": *
 
-#let g732-2017(content) = {
+#let gost732-2017(content) = {
     show: style_page();
     show: style_heading();
     show: style_list();
@@ -16,4 +16,4 @@
     content
 }
 
-#let гост732-2017(content) = {g732-2017(content)}
+#let гост732-2017(content) = gost732-2017(content)

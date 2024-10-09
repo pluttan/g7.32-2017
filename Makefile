@@ -36,17 +36,18 @@ copy_files:
 	@cp -r $(dir $(lastword $(MAKEFILE_LIST)))gost7.32-2017/* $(gost_package)
 
 create_dir_conf:
-    @mkdir -p $(dataConf)/typst
+	@mkdir -p $(dataConf)/typst
 
 config:
-    @ln -s $(gost_package)g7.32-2017.config.typ dataConf/typst/
+	@rm $(dataConf)/typst/g7.32-2017.config.typ
+	@ln -s $(gost_package)/g7.32-2017.config.typ $(dataConf)/typst/
 
 theme:
 	@if [ -z "$$1" ]; then \
 		echo "Error: You must provide a theme as .tmTheme file"; \
 		exit 1; \
 	fi
-    @cp "$$1" $(gost_package)/themes
+	@cp "$$1" $(gost_package)/themes
 
 themeList:
-    @ls $(gost_package)/themes
+	@ls $(gost_package)/themes
