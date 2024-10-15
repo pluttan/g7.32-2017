@@ -6,7 +6,7 @@
             inset: (x:6pt, y:0pt),
             outset: (y:3pt),
             radius: 4pt,
-            align(left)[it]
+            align(left)[#it]
         )
     }
     

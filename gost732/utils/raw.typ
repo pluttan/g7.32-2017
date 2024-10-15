@@ -57,8 +57,8 @@
 }
 
 // deprecated
-#let parsecpp(lst) = parse(lst)
-#let parseasm(lst) = parse(lst)
+#let parsercpp(lst) = parse(lst)
+#let parserasm(lst) = parse(lst)
 // end-deprecated
 
 #let разбор(лист) = parse(лист)
@@ -81,6 +81,30 @@
 }
 
 #let подтекст_начало_конец(текст, начало, конец) = subtext_from_to(текст, начало, конец)
+
+#let find_string(carr, no) = {
+    let out = ""
+    for i in carr {
+        if (i.func == no){
+            out += i.text + "\n"
+        }
+    }
+    return out
+}
+
+
+#let find_strings(carr, func) = {
+    let out = ""
+    for i in carr {
+        if (i.text == func){
+            return find_string(carr, i.func)
+        }
+    }
+    return ""
+}
+
+#let найти_строку(carr, no) = find_string(carr, no);
+#let найти_строки(carr, func) = find_strings(carr, func);
 
 // Функция, выводящая код по ГОСТу
 #let code(

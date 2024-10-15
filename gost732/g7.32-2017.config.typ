@@ -9,7 +9,7 @@
     ),
     toc:(
         label: "Содержание",
-        align: "left"
+        align: left
     ),
     img:(
         counter: counter("image")
@@ -19,7 +19,7 @@
     ),
     page:(
         textSize: 14pt,
-        alignNum: "center",
+        alignNum: center,
         paper: "a4",
         margin: (left: 30mm, right: 15mm, top: 20mm, bottom: 20mm),
         font: "Times New Roman",

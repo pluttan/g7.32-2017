@@ -4,10 +4,10 @@
 #let img(data, lable, f:(i)=>{i.display()}) = {
     align(center)[
         #data
-        #config.image.counter.step()
+        #config.img.counter.step()
     ]
     align(center)[
-        Рисунок #f(config.image.counter) #sym.bar.h #lable
+        Рисунок #f(config.img.counter) #sym.bar.h #lable
     ]
 }
 

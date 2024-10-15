@@ -22,7 +22,7 @@ else
 endif
 
 dataLib := $(dataLib)/typst/packages/docs
-gost_package := $(dataLib)/gost7.32-2017/0.1.1
+gost_package := $(dataLib)/gost732/0.1.1
 
 .PHONY: all install theme themeList
 all: install
@@ -33,13 +33,12 @@ create_dir_lib:
 	@mkdir -p $(gost_package)
 
 copy_files:
-	@cp -r $(dir $(lastword $(MAKEFILE_LIST)))gost7.32-2017/* $(gost_package)
+	@cp -r $(dir $(lastword $(MAKEFILE_LIST)))gost732/* $(gost_package)
 
 create_dir_conf:
 	@mkdir -p $(dataConf)/typst
 
 config:
-	@rm $(dataConf)/typst/g7.32-2017.config.typ
 	@ln -s $(gost_package)/g7.32-2017.config.typ $(dataConf)/typst/
 
 theme:
