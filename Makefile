@@ -22,7 +22,7 @@ else
 endif
 
 dataLib := $(dataLib)/typst/packages/docs
-gost_package := $(dataLib)/gost732/0.1.1
+gost_package := $(dataLib)/gost732-2017/0.1.1
 
 .PHONY: all install theme themeList
 all: install
