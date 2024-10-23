@@ -1,4 +1,11 @@
 #import "../g7.32-2017.config.typ": config
+#import "../utils/utils.typ": str
+
+#let is_special_heading(heading) = {
+    return lower(str(heading)).contains(regex(
+        "список испольнителей|реферат|содержание|термины и определения|перечень сокращений и обозначений|введение|заключение|список использованных источников|(приложение [А-Я])"
+    ))
+}
 
 #let style_heading(content) = {
     set heading(numbering: config.heading.numbering)
@@ -11,11 +18,16 @@
             }
         }
         set text(config.heading.l1.size, weight: config.heading.l1.weight, hyphenate: false)
+        if(is_special_heading(it)) {
+            it = it
+            block[jopa:1 3]
+        }
         if (config.heading.l1.upper){
             upper[#align(config.heading.l1.align)[#block(spacing: config.heading.l1.indent)[#it]]]
         } else {
             align(config.heading.l1.align)[#block(spacing: config.heading.l1.indent)[#it]]
         }
+        let foo = lower(it.body) 
     }
 
     show heading.where(level:2): it => {
