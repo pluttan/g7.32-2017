@@ -5,7 +5,7 @@
         footer: [
             #set text(size: config.page.textSize)
             #set align(config.page.alignNum)
-            #counter(page).display("1")
+            #context counter(page).display("1")
         ]
     )
     
@@ -22,7 +22,7 @@
     
     set align(top)
 
-    set par(justify: true, first-line-indent: config.page.parIndent)
+    set par(leading: 1em, spacing: 1em, justify: true, first-line-indent: config.page.parIndent)
 
     show: page_numbering
 
