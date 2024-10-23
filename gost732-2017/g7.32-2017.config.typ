@@ -30,6 +30,7 @@
     ),
     heading: (
         numbering: "1.1",
+        counter: counter("heading"),
         l1: (
             pagebreak: true,
             weight:"bold",
