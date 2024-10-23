@@ -9,14 +9,14 @@ else ifeq ($(unameOut),Darwin)
     dataLib := $(HOME)/Library/Application\ Support
     dataConf := $(HOME)/.config
 else ifeq ($(unameOut),CYGWIN*)
-    dataLib := %APPDATA%
-    dataConf := %APPDATA%
+    dataLib := $(APPDATA)
+    dataConf := $(APPDATA)
 else ifeq ($(unameOut),MINGW*)
-    dataLib := %APPDATA%
-    dataConf := %APPDATA%
+    dataLib := $(APPDATA)
+    dataConf := $(APPDATA)
 else ifeq ($(unameOut),MSYS_NT*)
-    dataLib := %APPDATA%
-    dataConf := %APPDATA%
+    dataLib := $(APPDATA)
+    dataConf := $(APPDATA)
 else
     $(error unknown os)
 endif

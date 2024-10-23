@@ -1,4 +1,17 @@
 #import "../g7.32-2017.config.typ":config
+
+#let page_numbering(content) = {
+    set page(
+        footer: [
+            #set text(size: config.page.textSize)
+            #set align(config.page.alignNum)
+            #counter(page).display("1")
+        ]
+    )
+    
+    content
+}
+
 #let style_page(content) = {
     set page(
         paper: config.page.paper,
@@ -11,17 +24,7 @@
 
     set par(justify: true, first-line-indent: config.page.parIndent)
 
-    content
-}
+    show: page_numbering
 
-#let page_numbering(content) = {
-    set page(
-        footer: [
-            #set text(size: config.page.textSize)
-            #set align(config.page.alignNum)
-            #counter(page).display("1")
-        ]
-    )
-    
     content
 }

@@ -1,4 +1,5 @@
 #import "../g7.32-2017.config.typ":config
+
 #let style_list(content) = {
     set list(indent: 0pt)
     

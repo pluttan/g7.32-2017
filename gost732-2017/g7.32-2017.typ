@@ -8,8 +8,6 @@
 #import "utils/table.typ": *
 #import "utils/toc.typ": *
 
-#let page_numbering = page_numbering
-
 #let gost732-2017(content) = {
     show: style_page;
     show: style_heading;
