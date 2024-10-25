@@ -1,18 +1,18 @@
 #import "../g7.32-2017.config.typ":config
 
-#let page_numbering(content) = {
-    set page(
-        footer: [
-            #set text(size: config.page.textSize)
-            #set align(config.page.alignNum)
-            #context counter(page).display("1")
-        ]
-    )
-    
-    content
-}
-
 #let style_page(content) = {
+    let page_numbering(content) = {
+        set page(
+            footer: [
+                #set text(size: config.page.textSize)
+                #set align(config.page.alignNum)
+                #context counter(page).display("1")
+            ]
+        )
+        
+        content
+    }
+
     set page(
         paper: config.page.paper,
         margin: config.page.margin,

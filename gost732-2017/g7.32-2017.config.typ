@@ -22,7 +22,7 @@
         alignNum: center,
         paper: "a4",
         margin: (left: 30mm, right: 15mm, top: 20mm, bottom: 20mm),
-        font: "Libertinus Serif",
+        font: "Times New Roman",
         parIndent: 1.25cm
     ),
     list: (
@@ -48,6 +48,14 @@
             indent: 1em
         ),
         l3: (
+            pagebreak: false,
+            weight:"bold",
+            size: 14pt,
+            upper: false,
+            align: left,
+            indent: 1em
+        ),
+        l4: (
             pagebreak: false,
             weight:"bold",
             size: 14pt,
