@@ -1,13 +1,13 @@
 # [GOST 7.32-2017 typst](https://github.com/pluttan/g7.32-2017)
 
-В данном репозитории представлены стили для блоков [Typst](https://typst.app) в соответствии с [ГОСТ 7.32-2017](https://github.com/pluttan/typst-g7.32-2017/blob/main/g7.32_2017.pdf).
+В данном репозитории представлены стили для блоков [Typst](https://typst.app) в соответствии с [ГОСТ 7.32-2017](https://github.com/bmstudenst-dev-group/typst-g7.32-2017/blob/main/g7.32_2017.pdf).
 
 ## Установка
 
 Склонируйте репозиторий:
 
 ```bash
-git clone https://github.com/pluttan/g7.32-2017
+git clone https://github.com/bmstudenst-dev-group/g7.32-2017
 ```
 
 И запустите `make`:
@@ -18,7 +18,7 @@ make
 
 ## Пример работы
 
-`TODO`
+Доступен в папке [examples](https://github.com/bmstudenst-dev-group/g7.32-2017/tree/main/examples).
 
 ## Файл конфигурации
 
