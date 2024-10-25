@@ -1,12 +1,5 @@
-#import "styles/page.typ": *
-#import "styles/heading.typ": *
-#import "styles/list.typ": *
-#import "styles/raw.typ": *
-
-#import "utils/image.typ": *
-#import "utils/raw.typ": *
-#import "utils/table.typ": *
-#import "utils/toc.typ": *
+#import "styles/styles.typ": *
+#import "utils/utils.typ": *
 
 #let gost732-2017(content) = {
     show: style_page;
