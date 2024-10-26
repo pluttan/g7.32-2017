@@ -1,5 +1,5 @@
 [package]
-name = "gost732"
+name = "gost732-2017"
 version = "0.1.1"
 entrypoint = "g7.32-2017.typ"
 authors = [
@@ -8,6 +8,6 @@ authors = [
 ]
 license = "MIT"
 description = "Styles to format docs with GOST 7.32-2017"
-repository = "https://github.com/pluttan/typst-g7.32-2017"
+repository = "https://github.com/bmstudents-dev-group/typst-g7.32-2017"
 keywords = ["gost7.32-2017", "gost"]
 categories = ["text", "scripting"]

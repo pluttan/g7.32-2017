@@ -30,13 +30,14 @@
     ),
     heading: (
         numbering: "1.1",
+        counter: counter("heading"),
         l1: (
             pagebreak: true,
             weight:"bold",
             size: 14pt,
             upper: true,
             align: center,
-            indent: 0.35em
+            indent: 1em
         ),
         l2: (
             pagebreak: false,
@@ -44,7 +45,7 @@
             size: 14pt,
             upper: false,
             align: left,
-            indent: 0.35em
+            indent: 1em
         ),
         l3: (
             pagebreak: false,
@@ -52,7 +53,15 @@
             size: 14pt,
             upper: false,
             align: left,
-            indent: 0.35em
+            indent: 1em
+        ),
+        l4: (
+            pagebreak: false,
+            weight:"bold",
+            size: 14pt,
+            upper: false,
+            align: left,
+            indent: 1em
         ),
     )
 )
