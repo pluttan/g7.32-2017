@@ -8,7 +8,7 @@
 
     set heading(numbering: config.heading.numbering)
 
-    let is_special_heading(heading) = {
+    let should_be_unnumbered_heading(heading) = {
         let heading = lower(to_str(heading))
         let match_res = heading.match(regex(
             "(список испольнителей)|реферат|содержание|(термины и определения)|(перечень сокращений и обозначений)|введение|заключение|(список использованных источников)|(приложение [а-яё])"
@@ -17,8 +17,7 @@
         return match_res != none and match_res.start == 0 and match_res.end == heading.len()
     }
 
-    // Если подзаголовок находится под специальным заголовком, то он проставляется без номера
-    let try_display_with_counter(subheading) = {
+    let try_apply_number_subheading(subheading) = {
         if counter(heading).get().at(0) != 0 {
             let heading_count = counter(heading).display() 
             return [#heading_count ] + subheading
@@ -33,20 +32,52 @@
     }
     
     show heading.where(level:1): it => {
+        let numbering_info = it.numbering
         // Почему-то стили корректно применяются только при использовании переводе заголовка в текст
         it = to_str(it)
 
         if config.heading.l1.pagebreak { try_pagebreak() }
 
         set text(config.heading.l1.size, weight: config.heading.l1.weight, hyphenate: false)
-        
-        // Специальные заголовки не нумеруются
-        if is_special_heading(it) {
+
+        let heading_number = counter(heading).display()
+
+        // Грязный хак: получение информации из порождающей функции
+        let force_numbering = false
+        if type(numbering_info) == function {
+            let numbering_info_res = numbering_info(none)
+            if type(numbering_info_res) == dictionary {
+                let number = numbering_info(none).at("force_numbering", default: none)
+                if number != none {
+                    force_numbering = true
+                    if type(number) == int {
+                        counter(heading).update(number)
+                        // Почему-то обновление счетчика работает только со следующей итерации
+                        heading_number = number
+                    }
+                }
+            }
+        }
+
+        let disable_numbering = false
+        if type(numbering_info) == function {
+            let numbering_info_res = numbering_info(none)
+            if type(numbering_info_res) == dictionary {
+                let number = numbering_info(none).at("disable_numbering", default: none)
+                if number != none {
+                    disable_numbering = true
+                }
+            }
+        }
+
+        if force_numbering or (
+            not disable_numbering and
+            not should_be_unnumbered_heading(it)
+        ) { 
+            it = [#heading_number ] + it
+        } else {
             // Сброс счетчика для корректного определения вида подзаголовков
             counter(heading).update(0)
-        } else {
-            let heading_count = counter(heading).display() 
-            it = [#heading_count ] + it
         }
 
         if config.heading.l1.upper {
@@ -67,7 +98,7 @@
 
         set text(config.heading.l2.size, weight: config.heading.l2.weight, hyphenate: false)
 
-        it = try_display_with_counter(it)
+        it = try_apply_number_subheading(it)
 
         if config.heading.l2.upper {
             it = upper(it)
@@ -87,7 +118,7 @@
         
         set text(config.heading.l3.size, weight: config.heading.l3.weight, hyphenate: false)
 
-        it = try_display_with_counter(it)
+        it = try_apply_number_subheading(it)
 
         if config.heading.l3.upper {
             it = upper(it)
@@ -107,7 +138,7 @@
         
         set text(config.heading.l4.size, weight: config.heading.l4.weight, hyphenate: false)
 
-        it = try_display_with_counter(it)
+        it = try_apply_number_subheading(it)
 
         if config.heading.l3.upper {
             it = upper(it)
