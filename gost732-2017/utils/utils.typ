@@ -4,6 +4,7 @@
 #import "table.typ": *
 #import "toc.typ": *
 
+// https://github.com/typst/typst/issues/2196#issuecomment-1728135476
 #let to_str(content) = {
     if type(content) == str {
         content
